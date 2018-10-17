@@ -1,0 +1,14 @@
+>>> touch index.html
+>>> echo "<p>Łączność</p>"
+
+# In browser: "ÅÄ…cznoÅ›Ä‡"
+
+>>> svn propset svn:mime-type "text/html;charset=UTF-8" index.html
+property 'svn:mime-type' set on 'index.html'
+
+>>> svn commit -m "Charset changed"
+Sending        index.html
+Committing transaction...
+Committed revision 25.
+
+# In browser "Łączność"

@@ -1,0 +1,145 @@
+➜  229735 git:(master) ✗ echo "file1" > a.txt
+➜  229735 git:(master) ✗ echo "file2" > b.txt
+➜  229735 git:(master) ✗ svn add a.txt b.txt
+A         a.txt
+A         b.txt
+➜  229735 git:(master) ✗ svn commit -m "Files added"
+Adding         a.txt
+Adding         b.txt
+Transmitting file data ..done
+Committing transaction...
+Committed revision 35.
+
+
+
+➜  229735 git:(master) ✗ svn delete b.txt
+D         b.txt
+➜  229735 git:(master) ✗ svn commit -m "b deleted"
+Deleting       b.txt
+Committing transaction...
+Committed revision 36.
+
+
+
+➜  229735 git:(master) ✗ echo "second line" >> a.txt
+➜  229735 git:(master) ✗ svn move a.txt b.txt
+A         b.txt
+D         a.txt
+➜  229735 git:(master) ✗ svn commit -m "a moved to b"
+Deleting       a.txt
+Adding         b.txt
+Transmitting file data .done
+Committing transaction...
+Committed revision 37.
+
+
+
+➜  229735 git:(master) ✗ echo "third line" >> b.txt
+➜  229735 git:(master) ✗ svn move b.txt c.txt
+A         c.txt
+D         b.txt
+➜  229735 git:(master) ✗ svn commit -m "b changed to c"
+Deleting       b.txt
+Adding         c.txt
+Transmitting file data .done
+Committing transaction...
+Committed revision 38.
+
+
+
+➜  229735 git:(master) ✗ echo "new" > d.txt
+➜  229735 git:(master) ✗ svn add d.txt
+A         d.txt
+➜  229735 git:(master) ✗ svn commit -m "d added"
+Adding         d.txt
+Transmitting file data .done
+Committing transaction...
+Committed revision 39.
+
+
+
+➜  229735 git:(master) ✗ svn log -v d.txt
+------------------------------------------------------------------------
+r39 | 229735 | 2018-10-17 18:54:44 +0200 (Wed, 17 Oct 2018) | 1 line
+Changed paths:
+   A /d.txt
+
+d added
+------------------------------------------------------------------------
+➜  229735 git:(master) ✗ svn log -v c.txt
+------------------------------------------------------------------------
+r38 | 229735 | 2018-10-17 18:54:19 +0200 (Wed, 17 Oct 2018) | 1 line
+Changed paths:
+   D /b.txt
+   A /c.txt (from /b.txt:37)
+
+b changed to c
+------------------------------------------------------------------------
+r37 | 229735 | 2018-10-17 18:53:24 +0200 (Wed, 17 Oct 2018) | 1 line
+Changed paths:
+   D /a.txt
+   A /b.txt (from /a.txt:36)
+
+a moved to b
+------------------------------------------------------------------------
+r35 | 229735 | 2018-10-17 18:52:09 +0200 (Wed, 17 Oct 2018) | 1 line
+Changed paths:
+   A /a.txt
+   A /b.txt
+
+Files added
+------------------------------------------------------------------------
+
+
+
+
+
+
+
+➜  229735 git:(master) ✗ svn log -v .
+------------------------------------------------------------------------
+r33 | 229735 | 2018-10-17 18:51:00 +0200 (Wed, 17 Oct 2018) | 1 line
+Changed paths:
+   D /a.txt
+
+Clean-up
+------------------------------------------------------------------------
+r32 | 229735 | 2018-10-17 18:47:58 +0200 (Wed, 17 Oct 2018) | 1 line
+Changed paths:
+   M /a.txt
+
+a modified
+------------------------------------------------------------------------
+r31 | 229735 | 2018-10-17 18:46:34 +0200 (Wed, 17 Oct 2018) | 1 line
+Changed paths:
+   D /b.txt
+
+b deleted
+------------------------------------------------------------------------
+r30 | 229735 | 2018-10-17 18:45:42 +0200 (Wed, 17 Oct 2018) | 1 line
+Changed paths:
+   A /a.txt
+   A /b.txt
+
+Files added
+
+
+
+
+
+
+➜  229735 git:(master) ✗ svn cat -r 35 c.txt@38
+file1
+➜  229735 git:(master) ✗ svn cat -r 36 c.txt@38
+file1
+➜  229735 git:(master) ✗ svn cat -r 37 c.txt@38
+file1
+second line
+➜  229735 git:(master) ✗ svn cat -r 38 c.txt@38
+file1
+second line
+third line
+➜  229735 git:(master) ✗ svn cat -r 39 c.txt@38
+file1
+second line
+third line

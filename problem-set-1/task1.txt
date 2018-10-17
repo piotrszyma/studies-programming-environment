@@ -1,0 +1,56 @@
+# Create repo1
+>>> svn checkout https://156.17.7.16/229735 repo1
+
+# Create repo2
+>>> svn checkout https://156.17.7.16/229735 repo2
+
+# Create file in repo2
+>>> echo "ipsum dolor" > conflict.txt
+
+# Commit file to remote
+
+# Create file in repo1
+>>> cd repo1
+
+
+
+# Try to commit from repo1, conflict:
+
+>>> svn up
+Updating '.':
+   C conflict.txt
+At revision 20.
+Summary of conflicts:
+  Tree conflicts: 1
+Searching tree conflict details for 'conflict.txt' in repository:
+Checking r20... done
+Tree conflict on 'conflict.txt':
+A new file appeared during update to r20; it was added by 229735 in r20.
+A file scheduled to be added to the repository in the next commit was found in the working copy.
+Select: (p) Postpone, (r) Mark as resolved, (m) Merge the files, (h) Help,
+        (q) Quit resolution: m
+Reverted 'conflict.txt'
+C    conflict.txt
+Tree conflict at 'conflict.txt' marked as resolved.
+Merge conflict discovered in file 'conflict.txt'.
+Select: (p) Postpone, (df) Show diff, (e) Edit file, (m) Merge,
+        (s) Show all options: e
+None of the environment variables SVN_EDITOR, VISUAL or EDITOR are set, and no 'editor-cmd' run-time configuration option was found
+Select: (p) Postpone, (df) Show diff, (e) Edit file, (m) Merge,
+        (s) Show all options: p
+Summary of conflicts:
+  Text conflicts: 1 remaining (and 0 already resolved)
+  Tree conflicts: 0 remaining (and 1 already resolved)
+
+>>> cat conflict.txt
+\<<<<<<< .working
+ipsum dolor
+||||||| .old
+=======
+Lorem es
+>>>>>>> .new
+
+>>> vim conflict.txt
+>>> svn resolve --accept=working conflict.txt
+# Conflict resolved...
+>>> svn commit -m "conflict merged"

@@ -1,0 +1,8 @@
+>> svn lock file_to_lock
+'file_to_lock' locked by user '229735'.
+>> svn unlock file_to_lock
+'file_to_lock' unlocked.
+>> svn unlock --force file_to_lock
+'file_to_lock' unlocked.
+>> svn lock --force file_to_lock
+'file_to_lock' locked by user '229735'.
