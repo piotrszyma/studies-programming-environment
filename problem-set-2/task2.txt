@@ -208,3 +208,9 @@ remote:     are supported and installed on your system.
 remote: perl: warning: Falling back to a fallback locale ("pl_PL.UTF-8").
 To 156.17.7.16:sandbox-18-19_25
  * [new tag]         s229735_ -> s229735_
+
+# -------------------------------------------------------
+              Usunięcie brancha lokalnie
+# -------------------------------------------------------
+
+➜  sandbox-18-19_25 git:(master) git branch -D 229735
