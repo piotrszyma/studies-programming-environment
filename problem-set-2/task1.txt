@@ -1,0 +1,41 @@
+# Stworzenie nowego brancha
+
+➜  app_1 svn copy trunk branches/229735
+A         branches/229735
+
+# Zmiany na branchu...
+
+# Dodanie nowych plikow do svn
+ 2257  svn status
+ 2258  svn add
+
+
+# Dodanie commita z branchem
+2259  svn commit -m "Branch 229735"
+
+
+# Merge brancha z trunkiem
+ 2346  svn merge ^/app_1/branches/229735
+ 2347  svn status
+ 2348  svn commit -m "Rozwiązanie 229735 na trunku"
+
+# Usunięcie brancha 229735
+ 2352  svn delete branches/229735
+ 2364  rm -rf branches/229735
+ 2374  svn delete branches/229735
+ 2376  svn commit -m "Branch 229735 usuniety po synchronizacji"
+
+# Dodanie tagu
+ 2391  svn copy trunk tags/v_229735
+ 2403  svn commit -m "Tag dla 229735"
+ 2404  svn update
+
+ ➜ svn log -r1:HEAD | grep 229735
+r23 | 229735 | 2018-10-23 19:42:24 +0200 (Tue, 23 Oct 2018) | 1 line
+Branch 229735
+r25 | 229735 | 2018-10-23 19:56:20 +0200 (Tue, 23 Oct 2018) | 1 line
+Rozwiązanie 229735 na trunku
+r26 | 229735 | 2018-10-23 19:59:45 +0200 (Tue, 23 Oct 2018) | 1 line
+Branch 229735 usuniety po synchronizacji
+r27 | 229735 | 2018-10-23 20:01:28 +0200 (Tue, 23 Oct 2018) | 1 line
+Tag dla 229735

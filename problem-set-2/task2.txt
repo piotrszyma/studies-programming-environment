@@ -1,0 +1,210 @@
+# -------------------------------------------------------
+              Klonowanie repozytorium
+# -------------------------------------------------------
+
+➜  Studies git clone git@156.17.7.16:sandbox-18-19_25
+Cloning into 'sandbox-18-19_25'...
+The authenticity of host '156.17.7.16 (156.17.7.16)' can't be established.
+ECDSA key fingerprint is SHA256:nzNj3/S/p3HP1777keRUHFpmCoR9oX0DKC/rduJkTnI.
+Are you sure you want to continue connecting (yes/no)? yes
+Warning: Permanently added '156.17.7.16' (ECDSA) to the list of known hosts.
+perl: warning: Setting locale failed.
+perl: warning: Please check that your locale settings:
+	LANGUAGE = (unset),
+	LC_ALL = (unset),
+	LC_CTYPE = "UTF-8",
+	LANG = "pl_PL.UTF-8"
+    are supported and installed on your system.
+perl: warning: Falling back to a fallback locale ("pl_PL.UTF-8").
+remote: Counting objects: 26, done.
+remote: Compressing objects: 100% (26/26), done.
+remote: Total 26 (delta 8), reused 0 (delta 0)
+Receiving objects: 100% (26/26), 4.23 KiB | 2.12 MiB/s, done.
+Resolving deltas: 100% (8/8), done.
+➜  Studies ls
+p_25                    programming-environment sandbox-18-19_25        test
+➜  Studies cd sandbox-18-19_25
+➜  sandbox-18-19_25 git:(master) ls
+main.c          makefile        program.h       program_usage.c s0_podprogram.c s999.c
+➜  sandbox-18-19_25 git:(master) gst
+On branch master
+Your branch is up to date with 'origin/master'.
+
+nothing to commit, working tree clean
+
+# -------------------------------------------------------
+                    Zmiana brancha
+# -------------------------------------------------------
+
+➜  sandbox-18-19_25 git:(master) gcb 229735
+Switched to a new branch '229735'
+
+
+# -------------------------------------------------------
+                    Modyfikacja plików
+# -------------------------------------------------------
+
+....
+
+
+# -------------------------------------------------------
+                    Merge z masterem
+# -------------------------------------------------------
+
+
+➜  sandbox-18-19_25 git:(229735) gco master
+Switched to branch 'master'
+Your branch is up to date with 'origin/master'.
+
+➜  sandbox-18-19_25 git:(master) gm 229735
+Updating fff7624..4ffd4e2
+Fast-forward
+ main.c               | 14 ++++++++------
+ program.h            |  4 +---
+ s229735_podprogram.c | 11 +++++++++++
+ 3 files changed, 20 insertions(+), 9 deletions(-)
+ create mode 100644 s229735_podprogram.c
+
+# -------------------------------------------------------
+                  Ściąganie zmian z remote
+# -------------------------------------------------------
+
+ ➜  sandbox-18-19_25 git:(master) git pull --rebase
+perl: warning: Setting locale failed.
+perl: warning: Please check that your locale settings:
+	LANGUAGE = (unset),
+	LC_ALL = (unset),
+	LC_CTYPE = "UTF-8",
+	LANG = "pl_PL.UTF-8"
+    are supported and installed on your system.
+perl: warning: Falling back to a fallback locale ("pl_PL.UTF-8").
+remote: Counting objects: 8, done.
+remote: Compressing objects: 100% (8/8), done.
+remote: Total 8 (delta 3), reused 0 (delta 0)
+Unpacking objects: 100% (8/8), done.
+From 156.17.7.16:sandbox-18-19_25
+   fff7624..248044d  master     -> origin/master
+First, rewinding head to replay your work on top of it...
+Applying: Dodane zmiany studenta 229735
+Using index info to reconstruct a base tree...
+M	main.c
+M	program.h
+.git/rebase-apply/patch:24: trailing whitespace.
+	      printf("\nStudent o numerze indeksu %d nie wykonał jeszcze zadania\n\n",idx);
+warning: 1 line adds whitespace errors.
+Falling back to patching base and 3-way merge...
+Auto-merging program.h
+CONFLICT (content): Merge conflict in program.h
+Auto-merging main.c
+CONFLICT (content): Merge conflict in main.c
+error: Failed to merge in the changes.
+Patch failed at 0001 Dodane zmiany studenta 229735
+hint: Use 'git am --show-current-patch' to see the failed patch
+
+Resolve all conflicts manually, mark them as resolved with
+"git add/rm <conflicted_files>", then run "git rebase --continue".
+You can instead skip this commit: run "git rebase --skip".
+To abort and get back to the state before "git rebase", run "git rebase --abort".
+
+
+# -------------------------------------------------------
+                  Merge zmian z remote
+# -------------------------------------------------------
+
+# Rozwiązywanie konfliktów...
+# Dodawanie plików po rozwiązanie konfliktów
+
+  sandbox-18-19_25 git:(248044d) ✗ gst
+rebase in progress; onto 248044d
+You are currently rebasing branch 'master' on '248044d'.
+  (fix conflicts and then run "git rebase --continue")
+  (use "git rebase --skip" to skip this patch)
+  (use "git rebase --abort" to check out the original branch)
+
+Changes to be committed:
+  (use "git reset HEAD <file>..." to unstage)
+
+	new file:   s229735_podprogram.c
+
+Unmerged paths:
+  (use "git reset HEAD <file>..." to unstage)
+  (use "git add <file>..." to mark resolution)
+
+	both modified:   main.c
+	both modified:   program.h
+
+# -------------------------------------------------------
+                Dodanie zmian po merge'u
+# -------------------------------------------------------
+
+➜  sandbox-18-19_25 git:(248044d) ✗ gaa
+
+# -------------------------------------------------------
+                Kontynuacja rebase'a
+# -------------------------------------------------------
+
+➜  sandbox-18-19_25 git:(248044d) ✗ grbc
+Applying: Dodane zmiany studenta 229735
+➜  sandbox-18-19_25 git:(master) gst
+On branch master
+Your branch is ahead of 'origin/master' by 1 commit.
+  (use "git push" to publish your local commits)
+
+nothing to commit, working tree clean
+➜  sandbox-18-19_25 git:(master) ggp
+perl: warning: Setting locale failed.
+perl: warning: Please check that your locale settings:
+	LANGUAGE = (unset),
+	LC_ALL = (unset),
+	LC_CTYPE = "UTF-8",
+	LANG = "pl_PL.UTF-8"
+    are supported and installed on your system.
+perl: warning: Falling back to a fallback locale ("pl_PL.UTF-8").
+Enumerating objects: 8, done.
+Counting objects: 100% (8/8), done.
+Delta compression using up to 8 threads
+Compressing objects: 100% (5/5), done.
+Writing objects: 100% (5/5), 806 bytes | 806.00 KiB/s, done.
+Total 5 (delta 3), reused 0 (delta 0)
+remote: perl: warning: Setting locale failed.
+remote: perl: warning: Please check that your locale settings:
+remote: 	LANGUAGE = (unset),
+remote: 	LC_ALL = (unset),
+remote: 	LC_CTYPE = "UTF-8",
+remote: 	LANG = "pl_PL.UTF-8"
+remote:     are supported and installed on your system.
+remote: perl: warning: Falling back to a fallback locale ("pl_PL.UTF-8").
+To 156.17.7.16:sandbox-18-19_25
+   248044d..1c0f455  master -> master
+➜  sandbox-18-19_25 git:(master) glog
+
+# -------------------------------------------------------
+                  Dodanie tagu
+# -------------------------------------------------------
+
+➜  sandbox-18-19_25 git:(master) git tag s229735_
+
+# -------------------------------------------------------
+                  Push na remote
+# -------------------------------------------------------
+
+➜  sandbox-18-19_25 git:(master) git push --tags
+perl: warning: Setting locale failed.
+perl: warning: Please check that your locale settings:
+	LANGUAGE = (unset),
+	LC_ALL = (unset),
+	LC_CTYPE = "UTF-8",
+	LANG = "pl_PL.UTF-8"
+    are supported and installed on your system.
+perl: warning: Falling back to a fallback locale ("pl_PL.UTF-8").
+Total 0 (delta 0), reused 0 (delta 0)
+remote: perl: warning: Setting locale failed.
+remote: perl: warning: Please check that your locale settings:
+remote: 	LANGUAGE = (unset),
+remote: 	LC_ALL = (unset),
+remote: 	LC_CTYPE = "UTF-8",
+remote: 	LANG = "pl_PL.UTF-8"
+remote:     are supported and installed on your system.
+remote: perl: warning: Falling back to a fallback locale ("pl_PL.UTF-8").
+To 156.17.7.16:sandbox-18-19_25
+ * [new tag]         s229735_ -> s229735_
