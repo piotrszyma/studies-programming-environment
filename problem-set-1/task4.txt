@@ -6,7 +6,7 @@
 │       └── repozytorium-svn.txt
 
 # checkout
->> svn co https://156.17.7.16/229735/
+>> svn checkout https://156.17.7.16/229735/
 
 Fetching external item into '229735/externals/info_repo':
 Checked out external at revision 3.
@@ -14,11 +14,11 @@ Checked out external at revision 3.
 Checked out revision 28.
 
 # checkout without externals
->> svn co https://156.17.7.16/229735/ --ignore-externals
+>> svn checkout https://156.17.7.16/229735/ --ignore-externals
 Checked out revision 28.
 
-# up
->> svn up
+# update
+>> svn update
 Updating '.':
 
 Fetching external item into 'externals/info_repo':
@@ -26,7 +26,7 @@ External at revision 3.
 
 At revision 28.
 
-# up with ignore externals
->> svn up --ignore-externals
+# update with ignore externals
+>> svn update --ignore-externals
 Updating '.':
 At revision 28.

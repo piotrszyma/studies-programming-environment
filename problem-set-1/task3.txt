@@ -1,5 +1,7 @@
 >>> touch index.html
 >>> echo "<p>Łączność</p>"
+>>> svn add index.html
+>>> svn commit -m "Initial charset"
 
 # In browser: "ÅÄ…cznoÅ›Ä‡"
 

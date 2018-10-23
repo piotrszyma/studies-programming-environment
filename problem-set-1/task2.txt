@@ -1,4 +1,6 @@
 >> mkdir -p f1/f2/f3/f4
+>> mkdir -p f5/f6
+>> mkdir -p f5/f7/f8/f9/f10
 >> tree
 ...
 ├── f1
@@ -15,7 +17,7 @@
 >>> cd ..
 >>> svn checkout https://156.17.7.16/229735 --depth immediates repository_immediates
 >>> cd repository_immediates
->>> tree
+>>> tree∂∂
 └── 229735
     ├── amh
     ├── conflict.txt

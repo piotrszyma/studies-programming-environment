@@ -6,13 +6,13 @@
 
 # Create file in repo2
 >>> echo "ipsum dolor" > conflict.txt
+>>> svn add conflict.txt
 
 # Commit file to remote
+>>> svn commit -m "commit from repo2"
 
 # Create file in repo1
 >>> cd repo1
-
-
 
 # Try to commit from repo1, conflict:
 
@@ -33,9 +33,6 @@ Reverted 'conflict.txt'
 C    conflict.txt
 Tree conflict at 'conflict.txt' marked as resolved.
 Merge conflict discovered in file 'conflict.txt'.
-Select: (p) Postpone, (df) Show diff, (e) Edit file, (m) Merge,
-        (s) Show all options: e
-None of the environment variables SVN_EDITOR, VISUAL or EDITOR are set, and no 'editor-cmd' run-time configuration option was found
 Select: (p) Postpone, (df) Show diff, (e) Edit file, (m) Merge,
         (s) Show all options: p
 Summary of conflicts:
