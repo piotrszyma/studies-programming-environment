@@ -15,12 +15,6 @@ SUM_ADDED=0
 SUM_DELETED=0
 
 for i in `svn log -v --xml $1 | grep -B 1 '<author>'$2'</author>' | awk 'NR % 3 == 1' | grep -Po '\d+'`; do
-
-  if [ "$i" -eq 0 ]
-  then
-    continue
-  fi
-
   REV=$i
   PREREV=`expr $REV - 1`
 
