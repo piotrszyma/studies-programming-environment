@@ -1,12 +1,16 @@
+#
+# Script counts number of commits, lines added and removed for user in SVN repo.
+#
+#   Example of usage: bash task1.sh https://156.17.7.16/p_25/ 229735
+#
+
 REPO=$1
 USERNAME=$2
 
 # For listing number of commits
-# svn log -v --xml $1 | grep '<author>'$2'</author>' | wc -l
-
+NUM_OF_COMMITS=`svn log -v --xml $1 | grep '<author>'$2'</author>' | wc -l`
 
 # For getting number of lines added / removed
-
 SUM_ADDED=0
 SUM_DELETED=0
 
@@ -29,4 +33,4 @@ for i in `svn log -v --xml $1 | grep -B 1 '<author>'$2'</author>' | awk 'NR % 3 
   done
 done
 
-echo 'User '$USERNAME' has added # '$SUM_ADDED' lines and deleted '$SUM_DELETED' lines.'
+echo 'User '$USERNAME' has made '$NUM_OF_COMMITS' commits; added '$SUM_ADDED' lines and deleted '$SUM_DELETED'.'
