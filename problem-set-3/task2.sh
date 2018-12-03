@@ -1,30 +1,36 @@
 #
-# Script counts number of commits, lines added and removed for user in SVN repo.
+# Script counts number of commits, lines added and removed for user in GIT repo.
 #
-#   Example of usage: bash task1.sh https://156.17.7.16/p_25/ 229735
+#   bash task2.sh <user email> <branch> <?repo url>
+#
+#   Example of usage: bash task2.sh thompson2908@gmail.com master
+#                     bash task2.sh thompson2908@gmail.com master \
+#                     git@github.com:piotrszyma/bemar-odziez.git
 #
 
-# REPO=$1
-USERNAME=$1
+EMAIL=$1
 BRANCH=$2
+REPO=$3
 
-# git clone $1 /tmp/repo
-# cd /tmp/repo
+if [[ $# -eq 3 ]] ; then
+  rm -rf /tmp/repo
+  git clone $REPO /tmp/repo
+  cd /tmp/repo
+fi
 
-# For listing number of commits
-NUM_OF_COMMITS=`git log $BRANCH | grep "$USERNAME" | wc -l`
+NUM_OF_COMMITS=`git log $BRANCH --author="$EMAIL" --oneline | wc -l`
 
 # For getting number of lines added / removed
 SUM_ADDED=0
 SUM_DELETED=0
 
-for i in `git log master | grep -B 1 "$USERNAME" | awk 'NR % 3 == 1' | awk '{print $2}'`; do
+for i in `git log $BRANCH --author="$EMAIL" --oneline --format="%H"`; do
   REV=$i
-  
+
   ADDED_PER_COMMIT=`git show $REV --shortstat | tail -n 1 | grep -Po '[0-9]*(?=\ insertions)'`
   DELETED_PER_COMMIT=`git show $REV --shortstat | tail -n 1 | grep -Po '[0-9]*(?=\ deletions)'`
-  
-  if [[ $ADDED_PER_COMMIT  ]]; then
+
+  if [[ $ADDED_PER_COMMIT ]]; then
     SUM_ADDED=`expr $SUM_ADDED + $ADDED_PER_COMMIT`
   fi
 
@@ -33,4 +39,4 @@ for i in `git log master | grep -B 1 "$USERNAME" | awk 'NR % 3 == 1' | awk '{pri
   fi
 done
 
-echo 'User '$USERNAME' has made '$NUM_OF_COMMITS' commits; added '$SUM_ADDED' lines and deleted '$SUM_DELETED'.'
+echo 'User '$EMAIL' has made '$NUM_OF_COMMITS' commits; added '$SUM_ADDED' lines and deleted '$SUM_DELETED'.'
