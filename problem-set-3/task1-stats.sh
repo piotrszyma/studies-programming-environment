@@ -6,10 +6,12 @@
 
 REPO=$1
 
+# Get unique list of users.
 USERS=`svn log --quiet $REPO | grep "^r" | awk '{print $3}' | sort | uniq`
 
 echo 'Stats for repository: '$REPO
 
+# Run script for each user in repo.
 for USER in $USERS; do
   bash task1.sh $REPO $USER &
 done
